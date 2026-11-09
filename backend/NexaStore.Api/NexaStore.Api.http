@@ -1,0 +1,63 @@
+@NexaStore.Api_HostAddress = http://localhost:5175
+
+### AI provider status
+GET {{NexaStore.Api_HostAddress}}/api/assistant/status
+Accept: application/json
+
+### Single-agent identity, goals, and boundaries
+GET {{NexaStore.Api_HostAddress}}/api/assistant/agent
+Accept: application/json
+
+### JEV judgment, evidence, and verification policy
+GET {{NexaStore.Api_HostAddress}}/api/assistant/jev
+Accept: application/json
+
+### MCP status and allowlisted capabilities
+GET {{NexaStore.Api_HostAddress}}/api/mcp/status
+Accept: application/json
+
+### Knowledge-base status
+GET {{NexaStore.Api_HostAddress}}/api/knowledge/status
+Accept: application/json
+
+### Ingest changed PDF documents (SHA-256 idempotent)
+POST {{NexaStore.Api_HostAddress}}/api/knowledge/ingest
+Accept: application/json
+
+### Semantic vector search
+GET {{NexaStore.Api_HostAddress}}/api/knowledge/search?query=What%20hardware%20is%20recommended%20for%20local%20LLMs%3F&limit=5
+Accept: application/json
+
+### Stream a tool-grounded and RAG-grounded response
+POST {{NexaStore.Api_HostAddress}}/api/assistant/chat/stream
+Content-Type: application/json
+Accept: text/event-stream
+
+{
+  "responseStyle": "balanced",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What hardware is recommended for running local LLMs? Cite the source."
+    }
+  ]
+}
+
+GET {{NexaStore.Api_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+GET {{NexaStore.Api_HostAddress}}/api/products/search?ramMin=64&vramMin=16&aiReady=true
+Accept: application/json
+
+###
+
+GET {{NexaStore.Api_HostAddress}}/api/categories
+Accept: application/json
+
+###
+
+GET {{NexaStore.Api_HostAddress}}/health
+
+###
